@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   checkAuth(bool auth) {
     if (auth == false) {
+      print("check " + auth.toString());
       Navigator.of(context).pushReplacementNamed('/login');
     }
   }
@@ -41,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       _path = await FilePicker.getFilePath(
           type: FileType.custom, allowedExtensions: ['pdf']);
-      print("Path " + _path);
+      // print("Path " + _path);
 
       await FilePicker.getFile(
           type: FileType.custom, allowedExtensions: ['pdf']).then((value) {
@@ -65,10 +66,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     screenHeight = MediaQuery.of(context).size.height;
     return StoreConnector<AppState, AppState>(
-      converter: (store) => store.state,
+      converter: (store) =>store.state,
       builder: (context, state) {
         auth = state.auth;
-        print("auth " + auth.toString());
+        print(" 3 home auth " + auth.toString());
+        // checkAuth(auth);
         return Scaffold(
           key: _scaffoldKey,
           appBar: AppBar(
@@ -80,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: Icon(Icons.power_settings_new),
                 onPressed: () {
                   AuthService().signOut();
-                  Navigator.of(context).pushReplacementNamed('login');
+                  Navigator.of(context).pushReplacementNamed('/login');
                 },
               ),
             ],

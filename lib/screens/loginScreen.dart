@@ -40,10 +40,6 @@ class _LoginScreenState extends State<LoginScreen>
           verificationFailed: verificationFailed,
           codeSent: smsSent,
           codeAutoRetrievalTimeout: autoTimeout);
-      
-  
-
-      print(_phoneNo);
     } catch (e) {
       Future.delayed(Duration(seconds: 2), () {
         _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("error"), duration: Duration(seconds: 2),));
@@ -249,13 +245,11 @@ class _LoginScreenState extends State<LoginScreen>
           icon: Icon(Icons.arrow_forward_ios, color: Color(0xFFFFD700),),
           onPressed: (){
             if(_formKey.currentState.validate()){
-              
               _formKey.currentState.save();
               AuthService().saveData(_name, _address, _phoneNo);
               // _scaffoldKey.currentState.showSnackBar(SnackBar(content: Text("Singining In"), duration: Duration(seconds: 5),));
               _verifyPhone(_phoneNo).whenComplete(() {
-                
-                Navigator.of(context).pushReplacementNamed('/home');
+                Navigator.of(context).pushReplacementNamed('/');
               });
             }
           },

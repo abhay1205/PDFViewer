@@ -13,7 +13,7 @@ AppState appReducer(state, action){
 }
 
 authReducer(auth, action){
-  if (action is GetInfoAction){
+  if (action is GetAuthAction){
     return action.auth;
   }
   return auth;

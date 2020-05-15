@@ -20,7 +20,6 @@ void main() {
 class MyApp extends StatelessWidget {
   final Store<AppState> store;
   MyApp({this.store});
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -33,14 +32,15 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(),
         routes: {
-          '/home': (BuildContext context) => HomeScreen(
+          '/': (BuildContext context) => HomeScreen(
             onInit: (){
-              StoreProvider.of<AppState>(context).dispatch(getInfoAction);
+              StoreProvider.of<AppState>(context).dispatch(getInfoAction());
+              StoreProvider.of<AppState>(context).dispatch(getAuthAction(context));
             }
           ),
           '/login': (BuildContext context) => LoginScreen(),
         },
-        home: LoginScreen(),
+        // home: LoginScreen(),
       ),
     );
   }

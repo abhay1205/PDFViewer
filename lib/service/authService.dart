@@ -16,7 +16,7 @@ class AuthService{
   signOut(){
     FirebaseAuth.instance.signOut().whenComplete(() async{
       final prefs = await SharedPreferences.getInstance();
-      prefs.setBool('auth', true);
+      prefs.setBool('auth', false);
     });
   }
 
@@ -24,8 +24,6 @@ class AuthService{
     FirebaseAuth.instance.signInWithCredential(authCredential).whenComplete(() async{
       final prefs = await SharedPreferences.getInstance();
       prefs.setBool('auth', true);
-      bool auth = prefs.getBool('auth');
-      print('aervice' + auth.toString());
     });
   }
 }
